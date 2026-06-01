@@ -5,6 +5,7 @@ import com.fcfs.coupon.entity.User;
 import com.fcfs.coupon.repository.CouponIssueRepository;
 import com.fcfs.coupon.repository.CouponRepository;
 import com.fcfs.coupon.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,7 @@ import java.util.concurrent.Executors;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Slf4j
 @SpringBootTest(properties = {
         "spring.jpa.show-sql=false",
         "logging.level.org.hibernate.SQL=OFF"
@@ -106,10 +108,10 @@ public class CouponServiceConcurrencyTest {
         long issuedCount = couponIssueRepository.countByCouponId(testCoupon.getId());
         Coupon updatedCoupon = couponRepository.findById(testCoupon.getId()).orElseThrow();
 
-        System.out.println("=================================================");
-        System.out.println("발급 성공한 총 쿠폰 수 (CouponIssue 개수): " + issuedCount);
-        System.out.println("실제 DB에 남은 쿠폰 수량: " + updatedCoupon.getRemainingQuantity());
-        System.out.println("=================================================");
+        log.info("=================================================");
+        log.info("발급 성공한 총 쿠폰 수 (CouponIssue 개수): {}", issuedCount);
+        log.info("실제 DB에 남은 쿠폰 수량: {}", updatedCoupon.getRemainingQuantity());
+        log.info("=================================================");
 
         // 동시성 이슈로 인해 100개를 초과하여 발급되었는지 검증
         assertTrue(issuedCount > 100, 
