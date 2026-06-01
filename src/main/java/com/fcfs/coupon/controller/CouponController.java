@@ -18,7 +18,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/coupons")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*") // React 로컬 개발 서버와 통신 허용
 public class CouponController {
 
     private final CouponService couponService;
