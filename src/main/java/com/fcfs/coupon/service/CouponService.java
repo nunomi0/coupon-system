@@ -2,6 +2,7 @@ package com.fcfs.coupon.service;
 
 import com.fcfs.coupon.entity.Coupon;
 import com.fcfs.coupon.entity.CouponIssue;
+import com.fcfs.coupon.entity.Role;
 import com.fcfs.coupon.entity.User;
 import com.fcfs.coupon.entity.CouponWithVersion;
 import com.fcfs.coupon.repository.CouponIssueRepository;
@@ -65,7 +66,7 @@ public class CouponService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));
 
         // 2. 관리자 권한 검증
-        if (!"ADMIN".equalsIgnoreCase(admin.getRole())) {
+        if (admin.getRole() != Role.ADMIN) {
             throw new IllegalStateException("관리자 권한을 가진 사용자만 쿠폰을 생성할 수 있습니다.");
         }
 

@@ -1,5 +1,6 @@
 package com.fcfs.coupon.service;
 
+import com.fcfs.coupon.entity.Role;
 import com.fcfs.coupon.entity.User;
 import com.fcfs.coupon.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class UserService {
         }
 
         // 2. 권한 기본값 검증 (USER 또는 ADMIN이 아니면 기본적으로 USER로 설정)
-        String userRole = "ADMIN".equalsIgnoreCase(role) ? "ADMIN" : "USER";
+        Role userRole = "ADMIN".equalsIgnoreCase(role) ? Role.ADMIN : Role.USER;
 
         // 3. 빌더 패턴으로 User 객체 생성 및 저장
         User user = User.builder()

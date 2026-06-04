@@ -52,8 +52,9 @@ public class User extends BaseTimeEntity {
     /**
      * - role: 사용자의 권한 등급을 지정합니다. (예: 일반 사용자 "USER", 관리자 "ADMIN")
      */
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String role;
+    private Role role;
 
 }
 

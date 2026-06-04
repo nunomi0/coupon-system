@@ -2,6 +2,7 @@ package com.fcfs.coupon.service;
 
 import com.fcfs.coupon.entity.Coupon;
 import com.fcfs.coupon.entity.CouponWithVersion;
+import com.fcfs.coupon.entity.Role;
 import com.fcfs.coupon.entity.User;
 import com.fcfs.coupon.facade.OptimisticLockCouponFacade;
 import com.fcfs.coupon.repository.CouponIssueRepository;
@@ -73,7 +74,7 @@ public class CouponServiceConcurrencyTest {
             users.add(User.builder()
                     .username("user" + i)
                     .password("password" + i)
-                    .role("USER")
+                    .role(Role.USER)
                     .build());
         }
         testUsers = userRepository.saveAll(users);

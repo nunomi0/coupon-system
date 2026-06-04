@@ -1,6 +1,7 @@
 package com.fcfs.coupon.config;
 
 import com.fcfs.coupon.entity.Coupon;
+import com.fcfs.coupon.entity.Role;
 import com.fcfs.coupon.entity.User;
 import com.fcfs.coupon.repository.CouponRepository;
 import com.fcfs.coupon.repository.UserRepository;
@@ -24,7 +25,7 @@ public class DataInitializer implements CommandLineRunner {
             User admin = User.builder()
                     .username("admin")
                     .password("1234")
-                    .role("ADMIN")
+                    .role(Role.ADMIN)
                     .build();
             userRepository.save(admin);
             log.info("테스트용 관리자 계정이 생성되었습니다: admin / 1234");
@@ -34,7 +35,7 @@ public class DataInitializer implements CommandLineRunner {
             User user = User.builder()
                     .username("user")
                     .password("1234")
-                    .role("USER")
+                    .role(Role.USER)
                     .build();
             userRepository.save(user);
             log.info("테스트용 일반 사용자 계정이 생성되었습니다: user / 1234");
