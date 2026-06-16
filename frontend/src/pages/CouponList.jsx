@@ -22,7 +22,7 @@ function CouponList({ user }) {
   // 백엔드로부터 최신 선착순 쿠폰 정보 목록을 읽어오는 함수
   const fetchCoupons = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/coupons');
+      const response = await axios.get('/api/coupons');
       // 백엔드가 제공한 JSON 데이터를 coupons 상태에 업데이트 (화면 리렌더링 발생)
       setCoupons(response.data);
       setFetching(false);
@@ -56,7 +56,7 @@ function CouponList({ user }) {
 
     try {
       // POST 통신: 특정 쿠폰에 대해 현재 사용자의 username으로 선착순 발급 요청 전송
-      await axios.post(`http://localhost:8080/api/coupons/${couponId}/issue`, {
+      await axios.post(`/api/coupons/${couponId}/issue`, {
         username: user.username
       });
 

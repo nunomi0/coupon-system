@@ -23,7 +23,7 @@ function AdminCoupon({ user }) {
   // DB에 존재하는 전체 쿠폰 목록을 조회하여 테이블에 채우는 비동기 함수
   const fetchCoupons = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/coupons');
+      const response = await axios.get('/api/coupons');
       setCoupons(response.data); // 최신 목록을 가져와 테이블 리렌더링
     } catch (error) {
       console.error('쿠폰 목록 로드 실패:', error);
@@ -60,7 +60,7 @@ function AdminCoupon({ user }) {
       // 3. 백엔드 쿠폰 생성 API 호출
       // - 쿠폰 이름, 수량과 함께 현재 로그인한 관리자의 ID(user.id)를 보냅니다.
       // - 백엔드는 전달받은 adminId의 사용자가 진짜 관리자 권한을 가졌는지 검증한 후 쿠폰을 등록합니다.
-      await axios.post('http://localhost:8080/api/coupons', {
+      await axios.post('/api/coupons', {
         name: name.trim(),
         totalQuantity: qty,
         adminId: user.id

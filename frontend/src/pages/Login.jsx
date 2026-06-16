@@ -44,7 +44,7 @@ function Login({ onLoginSuccess }) {
       // 2. 비동기 HTTP POST 통신 (axios)
       // - 백엔드의 '/api/users/login' API로 username과 password를 전송합니다.
       // - await 키워드는 백엔드 서버로부터 응답이 올 때까지 자바스크립트의 실행을 잠시 대기시킵니다.
-      const response = await axios.post('http://localhost:8080/api/users/login', {
+      const response = await axios.post('/api/users/login', {
         username: username.trim(),
         password: password.trim()
       });

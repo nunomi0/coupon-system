@@ -45,7 +45,7 @@ function Signup() {
     try {
       // 2. 백엔드 회원가입 API 통신
       // - '/api/users/signup' 엔드포인트로 사용자 이름, 암호, 권한 정보를 객체에 실어 보냅니다.
-      await axios.post('http://localhost:8080/api/users/signup', {
+      await axios.post('/api/users/signup', {
         username: username.trim(),
         password: password.trim(),
         role: role

@@ -1,0 +1,31 @@
+services:
+  db:
+    image: mariadb:11
+    container_name: coupon-db
+    environment:
+      MARIADB_DATABASE: coupondb
+      MARIADB_USER: couponuser
+      MARIADB_PASSWORD: couponpass
+      MARIADB_ROOT_PASSWORD: rootpass
+    ports:
+      - "3306:3306"
+
+  backend:
+    build: .
+    container_name: coupon-backend
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/coupondb
+      SPRING_DATASOURCE_USERNAME: couponuser
+      SPRING_DATASOURCE_PASSWORD: couponpass
+    ports:
+      - "8082:8080"
+
+  frontend:
+    build: ./frontend
+    container_name: coupon-frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
